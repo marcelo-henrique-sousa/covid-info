@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text, 
   Image, 
   StyleSheet, 
   Dimensions, 
-  ImageBackground, 
+  ImageBackground,
+  TouchableOpacity, 
   StatusBar,
   ScrollView,
   View,} from 'react-native';
+
+//Libs
+import {Picker} from '@react-native-community/picker';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+//Services
+import api from '../../services/api';
 
 //screen style imports
 import { 
@@ -20,12 +28,34 @@ import {
   CaseUpdateContainer, 
   CountriesContainer,
   Title,
+  SubTitle,
   Section,
   SectionTitle,
   StatsDescription,
   StatsDataNumber, } from './styles';
 
 function Main() {
+
+  //states...
+  const [selectedValue, setSelectedValue] = useState("Global");
+  //api states
+  const [globalTracker, setGlobalTracker] = useState({});
+  const [countries, setCountries] = useState([]);
+  const [currentCountry, setCurrentCountry] = useState({});
+
+  //Effects
+  useEffect(() =>{
+    async function loadGlobalSummary(){
+      const response = await api.get('/summary');
+      
+      setGlobalTracker(response.data.Global);
+      const sortedCountries = response.data.Countries.sort(( a, b )=> a.TotalConfirmed < b.TotalConfirmed ? 1 : -1);
+      setCountries(sortedCountries);
+    }
+
+    loadGlobalSummary();
+  }, []);
+
   return(
     <RootContainer>
       <TopContainer>
@@ -39,31 +69,60 @@ function Main() {
             source={require('../../assets/images/doctor.png')} 
             resizeMode='contain'/>
             <Title>If you can {'\n'}stay in home</Title>
+            <TouchableOpacity
+              style={{alignSelf: "auto",marginTop: -230}}
+              onPress={() => alert('new screen')}
+            >
+              <Icon name="menu" size={25} color="#f5f5f5" />
+            </TouchableOpacity>
           </ImageBackground>
         </CurvedContainer>
       </TopContainer>
       <BottomContainer>
         <SectionTitle>Case update</SectionTitle>
+        <Picker
+          selectedValue={selectedValue}
+          style={{ height: 50, width: screenWidth - 30, elevation: 10, }}
+          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        >
+          { countries.map( ( item, index ) => <Picker.Item key={index} label={item.Country} value={item.CountryCode} /> || <Picker.Item label="Global" value="gl" /> ) }
+        </Picker>
         <CaseUpdateContainer>
-          <StatsDescription>{<StatsDataNumber color='#ef9a9a'>1046</StatsDataNumber>}{'\n'}infected</StatsDescription>
-          <StatsDescription style={ { paddingHorizontal: 40 } }>{<StatsDataNumber color='#e53935'>87</StatsDataNumber>}{'\n'}deaths</StatsDescription>
-          <StatsDescription>{<StatsDataNumber color='#38ef7d'>46</StatsDataNumber>}{'\n'}recovered</StatsDescription>
+          <StatsDescription>
+            {
+              <StatsDataNumber color='#ef9a9a'>
+                {String(globalTracker.TotalConfirmed).slice(0,1) + "M+" || "0"}
+              </StatsDataNumber>
+            }{'\n'}infected
+            </StatsDescription>
+          <StatsDescription style={ { paddingHorizontal: 40 } }>
+            {
+              <StatsDataNumber color='#e53935'>
+                {String(globalTracker.TotalDeaths).slice(0,1) + "M+" || "0"}
+              </StatsDataNumber>
+            }{'\n'}deaths</StatsDescription>
+          <StatsDescription>
+            {
+              <StatsDataNumber color='#38ef7d'>
+                {String(globalTracker.TotalRecovered).slice(0,1) + "M+" || "0"}
+              </StatsDataNumber>
+            }{'\n'}recovered</StatsDescription>
         </CaseUpdateContainer>
-        <SectionTitle>Top 10 countries</SectionTitle>
+        <SectionTitle>Top 4 countries</SectionTitle>
 
         <CaseUpdateContainer>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} >
             <CountriesContainer color='#5e35b1'>
-              <Text>USA</Text>
+              <SubTitle>{countries[0].Country || "wait"}</SubTitle>
             </CountriesContainer>
-            <CountriesContainer color='#1de9b6'>
-              <Text>BRAZIL</Text>
-            </CountriesContainer>
-            <CountriesContainer color='#ffd600'>
-              <Text>ITÁLIA</Text>
+            <CountriesContainer color='#e64a19'>
+              <SubTitle>{countries[1].Country || "wait"}</SubTitle>
             </CountriesContainer>
             <CountriesContainer color='#2962ff'>
-              <Text>CHINA</Text>
+              <SubTitle>{countries[2].Country || "wait"}</SubTitle>
+            </CountriesContainer>
+            <CountriesContainer color='#1de9b6'>
+              <SubTitle>{countries[3].Country || "wait"}</SubTitle>
             </CountriesContainer>
           </ScrollView>
         </CaseUpdateContainer>

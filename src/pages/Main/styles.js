@@ -89,6 +89,8 @@ export const CaseUpdateContainer = styled.View.attrs({
 `;
 
 export const CountriesContainer = styled.View.attrs({
+  justifyContent: "center",
+  alignItems: "center",
   elevation: 4,
   shadowOffset: { width: 10, height: 10 },
   shadowColor: "red",
@@ -101,4 +103,11 @@ export const CountriesContainer = styled.View.attrs({
   border-radius: 10px;
   background-color: ${ props => props.color || '#333' };
   /* box-shadow: 10px 5px 5px ${ props => props.color || '#333' }; */
+`;
+
+export const SubTitle = styled.Text`
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: ${ props => props.color || '#fff' };
 `;
