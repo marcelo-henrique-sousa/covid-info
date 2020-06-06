@@ -6,9 +6,11 @@
 -->
 
 <!-- PROJECT SHIELDS -->
-[![GitHub issues](https://img.shields.io/github/issues-raw/rocketseat/react-native-template-rocketseat-basic.svg)](https://github.com/marcelo-henrique-sousa/covid-info/issues)
-[![GitHub last commit](https://img.shields.io/github/last-commit/rocketseat/react-native-template-rocketseat-basic.svg)](https://github.com/marcelo-henrique-sousa/covid-info/commits/master)
-[![NPM](https://img.shields.io/npm/l/react-native-template-rocketseat-basic.svg)](https://choosealicense.com/licenses/mit)
+<img alt="Last Commit" src="https://img.shields.io/github/last-commit/marcelo-henrique-sousa/covid-info">
+
+<img alt="Contributors" src="https://img.shields.io/github/contributors/marcelo-henrique-sousa/covid-info">
+
+<img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
 
 <!-- PROJECT LOGO -->
 <br />
