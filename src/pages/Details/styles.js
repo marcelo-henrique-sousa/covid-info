@@ -6,6 +6,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 export const screenHeigth = Dimensions.get('window').height.toFixed(2);
 export const screenWidth = Dimensions.get('window').width.toFixed(2);
 
+
 export const RootContainer = styled.View`
 flex: 1;
 height: ${ screenHeigth }px;
@@ -22,14 +23,14 @@ export const TopContainer = styled(LinearGradient).attrs({
   overflow : 'hidden',
 })`
 flex: 1;
-height: 40%;
+height: 30%;
 padding-top: ${ 30 + getStatusBarHeight(true) }px;
 `;
 
 export const BottomContainer = styled.View`
   align-items: center;
   background-color: #f5f5f5;
-  height: 60%;
+  height: 70%;
 `;
 
 export const CurvedContainer = styled.View.attrs({
@@ -49,9 +50,12 @@ export const Title = styled.Text`
   padding: 10px;
 `;
 
-export const Section = styled.View`
-  flex-direction: ${ props => props.direction || 'column' };
+export const SubTitle = styled.Text`
+  elevation: 4;
   padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: ${ props => props.color || '#fff' };
 `;
 
 export const SectionTitle = styled.Text`
@@ -62,23 +66,10 @@ export const SectionTitle = styled.Text`
   padding: 15px;
 `;
 
-export const StatsDescription = styled.Text`
-  text-align: center;
-  font-size: 16px;
-  color: #7e7e7e;
-  /* font-weight: bold; */
-`;
-
-export const StatsDataNumber = styled.Text`
-  font-size: 22px;
-  color: ${ props => props.color || '#3e3e' };
-  font-weight: bold;
-`;
-
-export const CaseUpdateContainer = styled.View.attrs({
+export const SymptompsContainer = styled.View.attrs({
   elevation: 12,
 })`
-  margin-top: 10px;
+  margin-top: 15px;
   justify-content: center;
   align-items: center;
   background-color: #fff;
@@ -88,7 +79,7 @@ export const CaseUpdateContainer = styled.View.attrs({
   flex-direction: row;
 `;
 
-export const CountriesContainer = styled.View.attrs({
+export const SymptompsCard = styled.ImageBackground.attrs({
   justifyContent: "center",
   alignItems: "center",
   elevation: 4,
@@ -105,9 +96,14 @@ export const CountriesContainer = styled.View.attrs({
   /* box-shadow: 10px 5px 5px ${ props => props.color || '#333' }; */
 `;
 
-export const SubTitle = styled.Text`
-  padding: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  color: ${ props => props.color || '#fff' };
+export const ContagionContainer = styled.View.attrs({
+  elevation: 12,
+})`
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  border-radius: 10px;
+  width: ${ screenWidth - 30 }px;
+  height: ${ screenHeigth / 4.4 }px;
+  /* flex-direction: row; */
 `;

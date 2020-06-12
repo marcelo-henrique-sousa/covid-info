@@ -34,7 +34,7 @@ import {
   StatsDescription,
   StatsDataNumber, } from './styles';
 
-function Main() {
+function Main({ navigation }) {
 
   //states...
   const [selectedValue, setSelectedValue] = useState("Global");
@@ -50,11 +50,30 @@ function Main() {
       
       setGlobalTracker(response.data.Global);
       const sortedCountries = response.data.Countries.sort(( a, b )=> a.TotalConfirmed < b.TotalConfirmed ? 1 : -1);
+      sortedCountries.slice(0,10);
       setCountries(sortedCountries);
     }
 
     loadGlobalSummary();
   }, []);
+
+  //App functions...
+  function NumberFormat(labelValue) {
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e+9
+
+      ? (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + "B"
+      // Six Zeroes for Millions 
+      : Math.abs(Number(labelValue)) >= 1.0e+6
+
+        ? (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + "M"
+        // Three Zeroes for Thousands
+        : Math.abs(Number(labelValue)) >= 1.0e+3
+
+          ? (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(2) + "K"
+
+          : Math.abs(Number(labelValue));
+  }
 
   return(
     <RootContainer>
@@ -71,7 +90,7 @@ function Main() {
             <Title>If you can {'\n'}stay in home</Title>
             <TouchableOpacity
               style={{alignSelf: "auto",marginTop: -230}}
-              onPress={() => alert('new screen')}
+              onPress={() => navigation.navigate('Details')}
             >
               <Icon name="menu" size={25} color="#f5f5f5" />
             </TouchableOpacity>
@@ -83,7 +102,7 @@ function Main() {
         <Picker
           selectedValue={selectedValue}
           style={{ height: 50, width: screenWidth - 30, elevation: 10, }}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+          onValueChange={(itemValue, itemIndex) => {setSelectedValue(itemValue); setCurrentCountry(countries[itemIndex])}}
         >
           { countries.map( ( item, index ) => <Picker.Item key={index} label={item.Country} value={item.CountryCode} /> || <Picker.Item label="Global" value="gl" /> ) }
         </Picker>
@@ -91,20 +110,20 @@ function Main() {
           <StatsDescription>
             {
               <StatsDataNumber color='#ef9a9a'>
-                {String(globalTracker.TotalConfirmed).slice(0,1) + "M+" || "0"}
+                {String(NumberFormat(currentCountry.TotalConfirmed)) || "0"}
               </StatsDataNumber>
             }{'\n'}infected
             </StatsDescription>
-          <StatsDescription style={ { paddingHorizontal: 40 } }>
+          <StatsDescription style={ { paddingHorizontal: 30 } }>
             {
               <StatsDataNumber color='#e53935'>
-                {String(globalTracker.TotalDeaths).slice(0,1) + "M+" || "0"}
+                {String(NumberFormat(currentCountry.TotalDeaths)) || "0"}
               </StatsDataNumber>
             }{'\n'}deaths</StatsDescription>
           <StatsDescription>
             {
               <StatsDataNumber color='#38ef7d'>
-                {String(globalTracker.TotalRecovered).slice(0,1) + "M+" || "0"}
+                {String(NumberFormat(currentCountry.TotalRecovered)) || "0"}
               </StatsDataNumber>
             }{'\n'}recovered</StatsDescription>
         </CaseUpdateContainer>
@@ -113,16 +132,16 @@ function Main() {
         <CaseUpdateContainer>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} >
             <CountriesContainer color='#5e35b1'>
-              <SubTitle>{countries[0].Country || "wait"}</SubTitle>
+              <SubTitle>{countries.length > 0 ? countries[0].Country : "wait"}</SubTitle>
             </CountriesContainer>
             <CountriesContainer color='#e64a19'>
-              <SubTitle>{countries[1].Country || "wait"}</SubTitle>
+              <SubTitle>{countries.length > 0 ? countries[1].Country : "wait"}</SubTitle>
             </CountriesContainer>
             <CountriesContainer color='#2962ff'>
-              <SubTitle>{countries[2].Country || "wait"}</SubTitle>
+              <SubTitle>{countries.length > 0 ? countries[2].Country : "wait"}</SubTitle>
             </CountriesContainer>
             <CountriesContainer color='#1de9b6'>
-              <SubTitle>{countries[3].Country || "wait"}</SubTitle>
+              <SubTitle>{countries.length > 0 ? countries[3].Country : "wait"}</SubTitle>
             </CountriesContainer>
           </ScrollView>
         </CaseUpdateContainer>
