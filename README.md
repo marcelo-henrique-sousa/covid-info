@@ -6,17 +6,18 @@
 -->
 
 <!-- PROJECT SHIELDS -->
-<img alt="Last Commit" src="https://img.shields.io/github/last-commit/marcelo-henrique-sousa/covid-info">
+<p align="center">
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/marcelo-henrique-sousa/covid-info">
 
-<img alt="Contributors" src="https://img.shields.io/github/contributors/marcelo-henrique-sousa/covid-info">
+  <img alt="Contributors" src="https://img.shields.io/github/contributors/marcelo-henrique-sousa/covid-info">
 
-<img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
-
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
+</p>
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="#">
-    <img src="./readme/screenshot.png" alt="Logo">
+    <img width="200" height="400" src="./readme/screenshot.png" alt="Logo">
   </a>
 
   <h3 align="center">Covid-info</h3>
