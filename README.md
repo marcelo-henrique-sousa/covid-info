@@ -16,22 +16,22 @@
 <br />
 <p align="center">
   <a href="https://rocketseat.com.br">
-    <img src="./readme/base_img.png" alt="Logo">
+    <img src="./readme/screenshot.png.png" alt="Logo">
   </a>
 
-  <h3 align="center">Simple app for covid info</h3>
+  <h3 align="center">Covid-info</h3>
 </p>
 
 <!-- TABLE OF CONTENTS -->
 
-## Tabela de Conteúdo
+## Tabela de conteúdo
 
-- [Tabela de Conteúdo](#tabela-de-conte%C3%BAdo)
-- [Sobre o Projeto](#sobre-o-projeto)
-  - [Feito Com](#feito-com)
-  - [Estrutura de Arquivos](#estrutura-de-arquivos)
-- [Contribuição](#contribui%C3%A7%C3%A3o)
-- [Licença](#licen%C3%A7a)
+- [Table of Contents](#tabela-de-conte%C3%BAdo)
+- [About this](#sobre-o-projeto)
+  - [Made with](#feito-com)
+  - [Structure](#estrutura-de-arquivos)
+- [Contribution](#contribui%C3%A7%C3%A3o)
+- [License](#licen%C3%A7a)
 
 <!-- ABOUT THE PROJECT -->
 
