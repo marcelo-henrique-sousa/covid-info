@@ -15,8 +15,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://rocketseat.com.br">
-    <img src="./readme/screenshot.png.png" alt="Logo">
+  <a href="#">
+    <img src="./readme/screenshot.png" alt="Logo">
   </a>
 
   <h3 align="center">Covid-info</h3>
