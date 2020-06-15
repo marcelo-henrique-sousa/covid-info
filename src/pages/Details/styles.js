@@ -6,7 +6,6 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 export const screenHeigth = Dimensions.get('window').height.toFixed(2);
 export const screenWidth = Dimensions.get('window').width.toFixed(2);
 
-
 export const RootContainer = styled.View`
 flex: 1;
 height: ${ screenHeigth }px;
@@ -105,5 +104,6 @@ export const ContagionContainer = styled.View.attrs({
   border-radius: 10px;
   width: ${ screenWidth - 30 }px;
   height: ${ screenHeigth / 4.4 }px;
+  margin-bottom: 10px;
   /* flex-direction: row; */
 `;

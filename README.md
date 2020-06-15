@@ -17,7 +17,8 @@
 <br />
 <p align="center">
   <a href="#">
-    <img width="200" height="400" src="./readme/screenshot.png" alt="Logo">
+    <img width="300" height="600" src="./readme/screenshot.png" alt="Logo">
+    <img width="300" height="600" src="./readme/screenshot2.png" alt="Logo2">
   </a>
 
   <h3 align="center">Covid-info</h3>

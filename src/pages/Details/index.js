@@ -20,6 +20,10 @@ import {
 
 import ContagionItem from '../../components/ContagionItem';
 
+import Boca from '../../assets/images/boca.png';
+import Air from '../../assets/images/air.png';
+import Food from '../../assets/images/food.png';
+
 function Details({navigation}){
   return (
     <RootContainer>
@@ -74,9 +78,11 @@ function Details({navigation}){
           </ScrollView>
         </SymptompsContainer>
         <SectionTitle>Contagion</SectionTitle>
-        <ContagionContainer>
-          <ContagionItem />
-        </ContagionContainer>
+        <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%' }} contentContainerStyle={{ alignItems: "center" }}>
+          <ContagionItem source={Boca} title="Human contact" description={`avoid contact with other people${'\n'}or touch your face in public places`}/>
+          <ContagionItem source={Air} title="Air transmission" description={`use a mask when leaving home,${'\n'}the virus also spreads through the air`}/>
+          <ContagionItem source={Food} title="Contamined objects" description={`Objects and food can be contaminated${'\n'}so wash it well and use alcohol gel`}/>
+        </ScrollView>
       </BottomContainer>
     </RootContainer>
   );

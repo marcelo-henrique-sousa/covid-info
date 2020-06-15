@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 
-import { Container, ContagionTitle,ContagionDescription } from './styles';
+import { Container, ContagionTitle, ContagionDescription } from './styles';
 
-const ContagionItem = () => {
+const ContagionItem = ({source, title, description}) => {
   return (
     <Container>
-      <Image style={{ width: '100%', height: '100%', }} resizeMode='contain' source={require('../../assets/images/sneeze.png')}/>
-      <ContagionTitle>Contagion Title{"\n"}<ContagionDescription>Contagion Description</ContagionDescription></ContagionTitle>
+      <ContagionTitle>{title}{"\n"}<ContagionDescription>{description}</ContagionDescription></ContagionTitle>
+      <Image style={{ width: '80%', height: '80%', marginRight: -80, marginTop: -20, alignSelf: 'flex-end',}} resizeMode='contain' source={source}/>
     </Container>
   );
 }
